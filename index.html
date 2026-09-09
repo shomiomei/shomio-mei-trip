@@ -723,14 +723,57 @@ alert("🎉 +" + value + "ポイント！");
 
 function missionCheck(box,value){
 
-if(box.checked){
+if(!box.checked){
+return;
+}
 
-addPoints(value);
+const members = [
+"お父さん",
+"お母さん",
+"子ども①",
+"子ども②",
+"子ども③"
+];
+
+let message =
+"🎯 ミッション達成！\n\n" +
+"誰が達成した？\n\n";
+
+members.forEach((member,index)=>{
+message += (index + 1) + "️⃣ " + member + "\n";
+});
+
+const answer = prompt(message + "\n番号を入力してください");
+
+const index = Number(answer) - 1;
+
+if(index < 0 || index >= members.length){
+
+alert("⚠️ 1〜5の番号を入力してください");
+
+box.checked = false;
+
+return;
 
 }
 
-}
+const member = members[index];
 
+family[member] += value;
+
+saveFamily();
+
+updateFamilyRanking();
+
+alert(
+"🎉 " +
+member +
+" に +" +
+value +
+"ポイント！"
+);
+
+}  
 
 /* =========================
    家族ポイント
