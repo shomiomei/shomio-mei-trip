@@ -6,83 +6,224 @@
 <title>しょうみおめい道中記</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;
+  background:#f7f3ea;
+  color:#333;
+  padding-bottom:80px;
 }
 
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background: #f7f3ea;
-  color: #333;
+header{
+  background:linear-gradient(135deg,#6f8f3d,#9caf62);
+  color:white;
+  padding:28px 18px 22px;
+  text-align:center;
 }
 
-header {
-  background: #6b8e23;
-  color: white;
-  padding: 22px 16px;
-  text-align: center;
+header .logo{font-size:40px}
+header h1{margin:5px 0;font-size:25px}
+header p{margin:5px 0;font-size:13px}
+
+main{
+  max-width:650px;
+  margin:auto;
+  padding:16px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 26px;
+.page{display:none}
+.page.active{display:block}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-header p {
-  margin: 6px 0 0;
-  font-size: 14px;
+.card h2{
+  margin:0 0 12px;
+  font-size:20px;
 }
 
-main {
-  padding: 16px;
-  max-width: 600px;
-  margin: auto;
+.hero{
+  text-align:center;
+  background:#fff;
 }
 
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 15px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+.hero h2{font-size:24px}
+
+.date{
+  display:inline-block;
+  background:#eef4df;
+  color:#557127;
+  border-radius:20px;
+  padding:7px 13px;
+  font-size:13px;
 }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 20px;
+.next{
+  background:#fff8d8;
+  border-left:5px solid #d8b94a;
 }
 
-.button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 12px;
-  background: #8fae4f;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
+.info{
+  line-height:1.8;
 }
 
-.button:active {
-  transform: scale(0.98);
+.button{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:13px;
+  margin-top:8px;
+  background:#7d9b45;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
 }
 
-.info {
-  background: #fff8d8;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 10px;
-  line-height: 1.7;
+.button.secondary{
+  background:#eee;
+  color:#444;
 }
 
-footer {
-  text-align: center;
-  padding: 25px;
-  font-size: 12px;
-  color: #777;
+.button:active{
+  transform:scale(.98);
+}
+
+.timeline{
+  border-left:3px solid #9caf62;
+  padding-left:15px;
+}
+
+.event{
+  position:relative;
+  padding:5px 0 18px;
+}
+
+.event:before{
+  content:"";
+  position:absolute;
+  left:-23px;
+  top:8px;
+  width:12px;
+  height:12px;
+  background:#7d9b45;
+  border-radius:50%;
+}
+
+.time{
+  font-weight:bold;
+  color:#617d32;
+}
+
+.small{
+  font-size:13px;
+  color:#777;
+}
+
+.mission{
+  border:2px solid #eee;
+  border-radius:14px;
+  padding:14px;
+  margin:10px 0;
+}
+
+.mission.done{
+  background:#eef7df;
+  border-color:#a9c477;
+}
+
+.mission label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size:16px;
+}
+
+.mission input{
+  width:20px;
+  height:20px;
+}
+
+.points{
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  color:#718d3d;
+}
+
+.photo-box{
+  border:2px dashed #bbb;
+  border-radius:15px;
+  padding:25px 15px;
+  text-align:center;
+  margin-top:10px;
+  background:#fafafa;
+}
+
+.photo-box input{
+  width:100%;
+  margin-top:12px;
+}
+
+.photo-preview{
+  max-width:100%;
+  max-height:250px;
+  margin-top:10px;
+  border-radius:12px;
+}
+
+textarea{
+  width:100%;
+  min-height:100px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:12px;
+  font-size:15px;
+}
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 -3px 12px rgba(0,0,0,.12);
+  z-index:100;
+}
+
+nav button{
+  border:0;
+  background:none;
+  color:#777;
+  font-size:11px;
+  padding:5px;
+}
+
+nav button.active{
+  color:#6f8f3d;
+  font-weight:bold;
+}
+
+nav span{
+  display:block;
+  font-size:23px;
+}
+
+footer{
+  text-align:center;
+  color:#999;
+  font-size:11px;
+  padding:20px;
 }
 </style>
 </head>
@@ -90,49 +231,372 @@ footer {
 <body>
 
 <header>
-  <h1>🚗 しょうみおめい道中記</h1>
-  <p>家族5人の思い出旅行アルバム</p>
+  <div class="logo">🚗</div>
+  <h1>しょうみおめい道中記</h1>
+  <p>家族5人の思い出を、旅の途中から残そう。</p>
 </header>
 
 <main>
 
-  <div class="card">
-    <h2>📖 今回の旅</h2>
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="card hero">
+    <span class="date">2026.9.12 ▶ 9.13</span>
+    <h2>🌿 山口家族旅行</h2>
+    <p>いよいよ旅のはじまり！</p>
+  </div>
+
+  <div class="card next">
+    <h2>📍 今回の旅</h2>
     <div class="info">
-      <strong>山口家族旅行</strong><br>
-      2026年9月12日（土）〜9月13日（日）
+      👨‍👩‍👧‍👦 家族5人<br>
+      🚗 マイカー旅行<br>
+      🏨 湯田温泉ユウベルホテル松政
     </div>
   </div>
 
   <div class="card">
-    <h2>🗺️ 旅のしおり</h2>
-    <p>今回の旅行スケジュールを確認しよう！</p>
-    <button class="button" onclick="alert('ここに旅行スケジュールを追加できます！')">
-      スケジュールを見る
+    <h2>⭐ 旅のポイント</h2>
+    <div class="points">
+      <span id="pointHome">0</span> pt
+    </div>
+    <p style="text-align:center">ミッションをクリアしてポイントを集めよう！</p>
+  </div>
+
+  <div class="card">
+    <h2>📖 今日の予定</h2>
+    <div id="todaySchedule">
+      山口旅行を楽しもう！
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ITINERARY -->
+<section id="schedule" class="page">
+
+  <div class="card">
+    <h2>📖 旅のしおり</h2>
+    <p>家族みんなで今日の予定を確認しよう。</p>
+  </div>
+
+  <div class="card">
+    <h2>📅 9月12日（土）</h2>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="time">🚗 出発</div>
+        <div>家族5人、山口へ！</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🦁 山口観光</div>
+        <div>動物・観光スポットを楽しもう</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🏨 18:00</div>
+        <div>湯田温泉ユウベルホテル松政 チェックイン</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🍚 18:30</div>
+        <div>ホテルで夕食</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🌙 夜散歩</div>
+        <div>湯田温泉の街を家族で散策</div>
+      </div>
+
+      <div class="event">
+        <div class="time">♨️ 温泉</div>
+        <div>1日の疲れをゆっくり癒そう</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📅 9月13日（日）</h2>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="time">☀️ 朝</div>
+        <div>朝食・出発準備</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🚗 観光</div>
+        <div>山口の思い出スポットへ</div>
+      </div>
+
+      <div class="event">
+        <div class="time">📸 思い出撮影</div>
+        <div>家族写真を残そう！</div>
+      </div>
+
+      <div class="event">
+        <div class="time">🏠 帰宅</div>
+        <div>楽しかった旅を振り返ろう</div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- DESTINATION -->
+<section id="destination" class="page">
+
+  <div class="card">
+    <h2>🗺️ 目的地</h2>
+    <p>旅先で訪れた場所を記録しよう！</p>
+  </div>
+
+  <div class="card">
+    <h2>♨️ 湯田温泉</h2>
+    <p>山口旅行の夜は温泉街を散歩。</p>
+    <button class="button"
+      onclick="window.open('https://www.google.com/maps/search/?api=1&query=湯田温泉','_blank')">
+      📍 Googleマップで開く
     </button>
   </div>
+
+  <div class="card">
+    <h2>🦁 動物・観光スポット</h2>
+    <p>見たもの、楽しかったことを記録しよう。</p>
+    <button class="button secondary"
+      onclick="alert('「行った！」を押して思い出を残そう！')">
+      ⭐ 行った！
+    </button>
+  </div>
+
+</section>
+
+
+<!-- MISSION -->
+<section id="mission" class="page">
+
+  <div class="card">
+    <h2>🎯 子どもミッション</h2>
+    <p>全部クリアできるかな？</p>
+
+    <div class="points">
+      <span id="pointMission">0</span> pt
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        👀 おもしろいものを3つ見つける
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        📸 家族写真を撮る
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        🐾 動物を観察する
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        ♨️ 温泉を楽しむ
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        🍴 山口のおいしいものを食べる
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        😆 家族みんなを笑わせる
+      </label>
+    </div>
+
+    <div class="mission">
+      <label>
+        <input type="checkbox" onchange="missionCheck(this,10)">
+        🌟 「また行きたい！」と思う場所を見つける
+      </label>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ALBUM -->
+<section id="album" class="page">
 
   <div class="card">
     <h2>📸 思い出アルバム</h2>
-    <p>旅行中の写真や思い出を残そう！</p>
-    <button class="button" onclick="alert('ここに写真アルバムを追加できます！')">
-      アルバムを見る
-    </button>
+    <p>旅行中の写真と思い出を残そう。</p>
   </div>
 
   <div class="card">
-    <h2>🎯 子どもチャレンジ</h2>
-    <p>旅行中にミッションをクリアしよう！</p>
-    <button class="button" onclick="alert('ミッションをクリアして思い出を集めよう！')">
-      ミッションを見る
-    </button>
+    <h2>📷 今日のベスト写真</h2>
+
+    <div class="photo-box">
+      📸 写真を選ぶ
+      <input type="file" accept="image/*" onchange="showPhoto(this)">
+      <img id="photoPreview" class="photo-preview">
+    </div>
   </div>
+
+  <div class="card">
+    <h2>💬 今日の思い出</h2>
+
+    <textarea id="memoryText"
+      placeholder="今日一番楽しかったことを書こう！"></textarea>
+
+    <button class="button" onclick="saveMemory()">
+      💾 思い出を保存
+    </button>
+
+    <p id="savedMessage" class="small"></p>
+  </div>
+
+  <div class="card">
+    <h2>❤️ 家族のひとこと</h2>
+    <textarea placeholder="お父さん・お母さん・子どもたちの感想を残そう"></textarea>
+  </div>
+
+</section>
 
 </main>
 
+
+<nav>
+  <button onclick="showPage('home',this)" class="active">
+    <span>🏠</span>ホーム
+  </button>
+
+  <button onclick="showPage('schedule',this)">
+    <span>📖</span>しおり
+  </button>
+
+  <button onclick="showPage('destination',this)">
+    <span>🗺️</span>目的地
+  </button>
+
+  <button onclick="showPage('mission',this)">
+    <span>🎯</span>ミッション
+  </button>
+
+  <button onclick="showPage('album',this)">
+    <span>📸</span>アルバム
+  </button>
+</nav>
+
+
 <footer>
-  © 2026 しょうみおめい道中記
+  しょうみおめい道中記<br>
+  家族5人の旅を、ずっと思い出に。
 </footer>
+
+
+<script>
+
+let points = Number(localStorage.getItem("points") || 0);
+
+function updatePoints(){
+  document.getElementById("pointHome").textContent = points;
+  document.getElementById("pointMission").textContent = points;
+}
+
+function missionCheck(box, value){
+
+  const parent = box.closest(".mission");
+
+  if(box.checked){
+    parent.classList.add("done");
+    points += value;
+  }else{
+    parent.classList.remove("done");
+    points -= value;
+  }
+
+  localStorage.setItem("points",points);
+  updatePoints();
+}
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page").forEach(function(page){
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(function(btn){
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  window.scrollTo(0,0);
+}
+
+function showPhoto(input){
+
+  if(input.files && input.files[0]){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+      document.getElementById("photoPreview").src = e.target.result;
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function saveMemory(){
+
+  const text = document.getElementById("memoryText").value;
+
+  localStorage.setItem("memory",text);
+
+  document.getElementById("savedMessage").textContent =
+    "✅ 思い出をこの端末に保存しました！";
+}
+
+window.onload = function(){
+
+  updatePoints();
+
+  const memory = localStorage.getItem("memory");
+
+  if(memory){
+    document.getElementById("memoryText").value = memory;
+  }
+
+};
+
+</script>
 
 </body>
 </html>
