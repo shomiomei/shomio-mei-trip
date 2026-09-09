@@ -724,7 +724,28 @@ updatePoints();
 alert("🎉 +" + value + "ポイント！");
 
 }
+function loadMissions(){
 
+for(let i = 1; i <= 6; i++){
+
+const box =
+document.querySelector(
+'input[data-mission="' + i + '"]'
+);
+
+if(
+box &&
+localStorage.getItem("mission_" + i)
+=== "completed"
+){
+
+box.checked = true;
+
+}
+
+}
+
+}
 
 /* =========================
    ミッション
@@ -1163,6 +1184,8 @@ showQuiz();
 
 loadMemory();
 
+loadMissions();
+  
 </script>
 
 </body>
