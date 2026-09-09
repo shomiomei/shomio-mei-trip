@@ -458,7 +458,35 @@ onclick="window.open('https://www.google.com/maps/search/?api=1&query=秋吉台�
 <hr>
 
 <h3>称号一覧</h3>
+<div class="card">
+<h3>👨‍👩‍👧‍👦 家族ランキング</h3>
 
+<div id="familyRanking"></div>
+
+<hr>
+
+<h3>⭐ ポイントを追加</h3>
+<label>誰がポイントを獲得した？</label>
+<select id="familyMember">
+<option value="お父さん">お父さん</option>
+<option value="お母さん">お母さん</option>
+<option value="子ども①">子ども①</option>
+<option value="子ども②">子ども②</option>
+<option value="子ども③">子ども③</option>
+</select>
+<label>何ポイント？</label>
+<select id="pointValue">
+<option value="10">+10 pt</option>
+<option value="20">+20 pt</option>
+<option value="50">+50 pt</option>
+</select>
+
+<button class="primary big-button" onclick="addFamilyPoint()">
+⭐ ポイントを追加！
+</button>
+
+</div>
+  
 <p>🥉 100pt　山口たんけん隊</p>
 <p>🥈 200pt　山口たんけん名人</p>
 <p>🥇 300pt　山口たんけん達人</p>
@@ -775,7 +803,62 @@ document.getElementById("memoryText").value = text;
 updatePoints();
 showQuiz();
 loadMemory();
+const family = {
+  "お父さん": Number(localStorage.getItem("dadPoints") || 0),
+  "お母さん": Number(localStorage.getItem("momPoints") || 0),
+  "子ども①": Number(localStorage.getItem("child1Points") || 0),
+  "子ども②": Number(localStorage.getItem("child2Points") || 0),
+  "子ども③": Number(localStorage.getItem("child3Points") || 0)
+};
 
+function addFamilyPoint() {
+
+  const member = document.getElementById("familyMember").value;
+  const value = Number(document.getElementById("pointValue").value);
+
+  family[member] += value;
+
+  saveFamilyPoints();
+  showFamilyRanking();
+
+  alert("🎉 " + member + " に +" + value + "ポイント！");
+}
+
+function saveFamilyPoints() {
+
+  localStorage.setItem("dadPoints", family["お父さん"]);
+  localStorage.setItem("momPoints", family["お母さん"]);
+  localStorage.setItem("child1Points", family["子ども①"]);
+  localStorage.setItem("child2Points", family["子ども②"]);
+  localStorage.setItem("child3Points", family["子ども③"]);
+}
+
+function showFamilyRanking() {
+
+  const ranking = Object.entries(family)
+    .sort((a,b) => b[1] - a[1]);
+
+  const medals = ["🥇","🥈","🥉","4️⃣","5️⃣"];
+
+  document.getElementById("familyRanking").innerHTML =
+    ranking.map((item,index) => `
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:12px;
+        margin:6px 0;
+        background:#f5f5f5;
+        border-radius:12px;
+        font-size:18px;
+      ">
+        <span>${medals[index]} ${item[0]}</span>
+        <strong>⭐ ${item[1]} pt</strong>
+      </div>
+    `).join("");
+}
+
+showFamilyRanking();
 </script>
 
 </body>
