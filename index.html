@@ -6,833 +6,775 @@
 <title>しょうみおめい道中記</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
- margin:0;
- font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;
- background:#f6f1e7;
- color:#333;
- padding-bottom:85px;
+* {
+  box-sizing: border-box;
 }
 
-header{
- background:linear-gradient(135deg,#607f35,#9aae62);
- color:white;
- text-align:center;
- padding:25px 15px 20px;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+  background: #f5f1e8;
+  color: #333;
+  padding-bottom: 80px;
 }
 
-header .car{font-size:42px}
-header h1{margin:4px 0;font-size:25px}
-header p{margin:4px 0;font-size:13px}
-
-main{
- max-width:650px;
- margin:auto;
- padding:15px;
+header {
+  background: #5f8f68;
+  color: white;
+  padding: 18px 16px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.page{display:none}
-.page.active{display:block}
-
-.card{
- background:#fff;
- border-radius:18px;
- padding:18px;
- margin-bottom:15px;
- box-shadow:0 3px 12px rgba(0,0,0,.07);
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
 }
 
-.hero{
- text-align:center;
- padding:22px 15px;
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.hero h2{
- font-size:24px;
- margin:12px 0 5px;
+h2 {
+  margin-top: 0;
+  color: #4d7655;
 }
 
-.date{
- display:inline-block;
- padding:7px 14px;
- background:#edf3dc;
- color:#59752d;
- border-radius:30px;
- font-size:13px;
- font-weight:bold;
+h3 {
+  margin-bottom: 8px;
 }
 
-.next{
- background:#fff9dc;
- border-left:6px solid #d7b84c;
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.next-title{
- font-size:14px;
- color:#777;
+.primary {
+  background: #5f8f68;
+  color: white;
 }
 
-.next-place{
- font-size:25px;
- font-weight:bold;
- margin:5px 0;
+.orange {
+  background: #e9a23b;
+  color: white;
 }
 
-.progress-wrap{
- background:#eee;
- height:12px;
- border-radius:20px;
- overflow:hidden;
+.blue {
+  background: #5b8db8;
+  color: white;
 }
 
-.progress{
- height:100%;
- width:0%;
- background:#7f9b48;
- transition:.3s;
+.points {
+  font-size: 30px;
+  font-weight: bold;
+  color: #e39a2b;
+  text-align: center;
+  margin: 10px 0;
 }
 
-.progress-text{
- text-align:center;
- margin-top:8px;
- font-size:13px;
- color:#666;
+.rank {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.menu-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+.progress {
+  background: #ddd;
+  border-radius: 20px;
+  height: 14px;
+  overflow: hidden;
 }
 
-.menu-btn{
- border:0;
- background:#f8f8f8;
- border-radius:15px;
- padding:18px 8px;
- font-size:15px;
- font-weight:bold;
- color:#444;
+.progress-bar {
+  background: #e9a23b;
+  height: 100%;
+  width: 0%;
+  transition: 0.4s;
 }
 
-.menu-btn span{
- display:block;
- font-size:30px;
- margin-bottom:5px;
+.mission,
+.quiz {
+  border: 2px solid #eee;
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 12px;
 }
 
-.day-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:15px;
+.mission label {
+  display: block;
+  font-size: 17px;
 }
 
-.day-title h2{
- margin:0;
+.quiz-option {
+  width: 100%;
+  margin-top: 8px;
+  background: #f1f5f1;
+  text-align: left;
 }
 
-.badge{
- background:#7f9b48;
- color:white;
- padding:5px 10px;
- border-radius:20px;
- font-size:12px;
+.quiz-option:hover {
+  background: #dcebdd;
 }
 
-.timeline{
- border-left:3px solid #9aae62;
- margin-left:8px;
- padding-left:18px;
+.correct {
+  background: #cceccc !important;
 }
 
-.event{
- position:relative;
- padding-bottom:20px;
+.wrong {
+  background: #f4cccc !important;
 }
 
-.event:last-child{
- padding-bottom:3px;
+.result {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.event:before{
- content:"";
- position:absolute;
- width:13px;
- height:13px;
- border-radius:50%;
- background:#7f9b48;
- left:-26px;
- top:4px;
+.photo-preview {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 
-.event.done:before{
- background:#d1d1d1;
+textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
 }
 
-.event.done .event-content{
- opacity:.5;
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 4px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
 }
 
-.time{
- font-size:18px;
- font-weight:bold;
- color:#607d32;
+.bottom-nav button {
+  background: none;
+  color: #555;
+  font-size: 12px;
+  padding: 6px;
 }
 
-.event-name{
- font-size:16px;
- font-weight:bold;
- margin-top:2px;
+.page {
+  display: none;
 }
 
-.event-detail{
- font-size:13px;
- color:#777;
- margin-top:3px;
- line-height:1.6;
+.page.active {
+  display: block;
 }
 
-.check{
- margin-top:7px;
+.big-button {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
-.check button{
- border:1px solid #ddd;
- background:white;
- border-radius:20px;
- padding:6px 12px;
- font-size:12px;
+.schedule-item {
+  padding: 12px;
+  border-left: 5px solid #5f8f68;
+  margin-bottom: 10px;
+  background: #fafafa;
+  border-radius: 8px;
 }
 
-.check button.checked{
- background:#7f9b48;
- color:white;
- border-color:#7f9b48;
+.schedule-item.done {
+  opacity: 0.55;
+  text-decoration: line-through;
 }
 
-footer{
- text-align:center;
- font-size:11px;
- color:#999;
- padding:20px;
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #eee;
+  margin-top: 8px;
 }
 
-nav{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- height:72px;
- background:white;
- display:flex;
- justify-content:space-around;
- align-items:center;
- box-shadow:0 -3px 12px rgba(0,0,0,.12);
- z-index:100;
+.warning {
+  background: #fff3cd;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
 }
-
-nav button{
- border:0;
- background:none;
- color:#777;
- font-size:10px;
-}
-
-nav button.active{
- color:#66833a;
- font-weight:bold;
-}
-
-nav span{
- display:block;
- font-size:23px;
- margin-bottom:2px;
-}
-
-.note{
- background:#f3f0e7;
- padding:12px;
- border-radius:12px;
- font-size:13px;
- line-height:1.7;
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
- <div class="car">🚗</div>
- <h1>しょうみおめい道中記</h1>
- <p>家族5人の思い出を、旅の途中から残そう。</p>
+🚗 しょうみおめい道中記
 </header>
 
-<main>
+<div class="container">
 
 <!-- HOME -->
+<div id="home" class="page active">
 
-<section id="home" class="page active">
+<div class="card">
+<h2>🌟 山口家族旅行</h2>
+<p>2026年9月12日（土）〜9月13日（日）</p>
 
- <div class="card hero">
-  <span class="date">2026.9.12 ▶ 9.13</span>
-  <h2>🌿 山口家族旅行</h2>
-  <p>さあ、家族5人の旅へ出発！</p>
- </div>
+<div class="points">
+⭐ <span id="totalPoints">0</span> pt
+</div>
 
- <div class="card next">
-  <div class="next-title">📍 次の予定</div>
-  <div class="next-place" id="nextPlace">
-   山口旅行スタート！
-  </div>
-  <div id="nextDetail">
-   楽しい旅にしよう！
-  </div>
- </div>
+<div class="rank" id="rank">山口たんけん見習い</div>
+</div>
 
- <div class="card">
-  <h2>📊 今日の旅の進み具合</h2>
+<div class="card">
+<h2>🏆 たんけん王への道</h2>
 
-  <div class="progress-wrap">
-   <div class="progress" id="homeProgress"></div>
-  </div>
+<div class="progress">
+<div class="progress-bar" id="rankProgress"></div>
+</div>
 
-  <div class="progress-text" id="progressText">
-   0% 完了
-  </div>
- </div>
+<p style="text-align:center">
+次の称号まであと <b id="nextPoints">100</b> pt
+</p>
+</div>
 
- <div class="card">
-  <h2>🚀 メニュー</h2>
+<div class="card">
+<h2>📅 次の予定</h2>
 
-  <div class="menu-grid">
+<p>🚗 家族5人で山口旅行！</p>
+<p>🏨 18:00 湯田温泉ユウベルホテル松政</p>
+<p>🍽️ 18:30 夕食</p>
+<p>♨️ 夜は温泉＆夜散歩</p>
+</div>
 
-   <button class="menu-btn" onclick="showPage('schedule',document.querySelectorAll('nav button')[1])">
-    <span>📖</span>
-    旅のしおり
-   </button>
+<div class="card">
+<h2>🎮 子どもチャレンジ</h2>
 
-   <button class="menu-btn" onclick="showPage('map',document.querySelectorAll('nav button')[2])">
-    <span>🗺️</span>
-    目的地
-   </button>
+<button class="primary big-button"
+onclick="showPage('quiz')">
+🧠 山口クイズに挑戦！
+</button>
 
-   <button class="menu-btn" onclick="showPage('mission',document.querySelectorAll('nav button')[3])">
-    <span>🎯</span>
-    ミッション
-   </button>
+<button class="orange big-button"
+onclick="showPage('mission')">
+🎯 ミッションに挑戦！
+</button>
 
-   <button class="menu-btn" onclick="showPage('album',document.querySelectorAll('nav button')[4])">
-    <span>📸</span>
-    思い出
-   </button>
+<button class="blue big-button"
+onclick="showPage('rank')">
+🏆 今の称号を見る
+</button>
+</div>
 
-  </div>
- </div>
+<div class="card">
+<h2>📌 旅行のルール</h2>
+<p>① 家族みんなで楽しむ</p>
+<p>② 写真をいっぱい撮る</p>
+<p>③ 困ったらすぐ家族に相談</p>
+<p>④ いちばん大事なのは安全！</p>
+</div>
 
- <div class="card">
-  <h2>💡 旅のルール</h2>
-  <div class="note">
-   ⭐ 楽しむ<br>
-   📸 写真をたくさん撮る<br>
-   👨‍👩‍👧‍👦 家族みんなで思い出を作る<br>
-   😊 ケンカしても仲直り！
-  </div>
- </div>
-
-</section>
+</div>
 
 
 <!-- SCHEDULE -->
+<div id="schedule" class="page">
 
-<section id="schedule" class="page">
+<div class="card">
+<h2>📖 旅行のしおり</h2>
 
- <div class="card">
-  <div class="day-title">
-   <h2>📖 9月12日（土）</h2>
-   <span class="badge">DAY 1</span>
-  </div>
+<h3>9月12日（土）</h3>
 
-  <div class="timeline">
+<div class="schedule-item">
+🚗 出発<br>
+家族5人で山口へ！
+</div>
 
-   <div class="event" id="event1">
-    <div class="event-content">
-     <div class="time">🚗 出発</div>
-     <div class="event-name">山口へ出発！</div>
-     <div class="event-detail">
-      家族5人で安全運転。
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event1',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="schedule-item">
+🗺️ 山口観光
+</div>
 
-   <div class="event" id="event2">
-    <div class="event-content">
-     <div class="time">🦁 観光</div>
-     <div class="event-name">山口観光</div>
-     <div class="event-detail">
-      家族みんなで楽しもう！
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event2',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="schedule-item">
+🏨 18:00 ホテルチェックイン
+</div>
 
-   <div class="event" id="event3">
-    <div class="event-content">
-     <div class="time">18:00</div>
-     <div class="event-name">🏨 ホテルチェックイン</div>
-     <div class="event-detail">
-      湯田温泉ユウベルホテル松政
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event3',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="schedule-item">
+🍽️ 18:30 夕食
+</div>
 
-   <div class="event" id="event4">
-    <div class="event-content">
-     <div class="time">18:30</div>
-     <div class="event-name">🍚 ホテル夕食</div>
-     <div class="event-detail">
-      家族みんなでいただきます！
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event4',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="schedule-item">
+🌙 夜散歩
+</div>
 
-   <div class="event" id="event5">
-    <div class="event-content">
-     <div class="time">🌙 夜散歩</div>
-     <div class="event-name">湯田温泉を散策</div>
-     <div class="event-detail">
-      夜の温泉街を歩いてみよう。
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event5',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="schedule-item">
+♨️ 温泉
+</div>
 
-   <div class="event" id="event6">
-    <div class="event-content">
-     <div class="time">♨️ 夜</div>
-     <div class="event-name">温泉タイム</div>
-     <div class="event-detail">
-      今日の疲れをゆっくり癒そう。
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event6',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<h3>9月13日（日）</h3>
 
-  </div>
- </div>
+<div class="schedule-item">
+🍳 朝食
+</div>
+
+<div class="schedule-item">
+🦁 山口観光
+</div>
+
+<div class="schedule-item">
+📸 家族写真
+</div>
+
+<div class="schedule-item">
+🚗 帰宅
+</div>
+
+</div>
+</div>
 
 
- <div class="card">
+<!-- DESTINATION -->
+<div id="destination" class="page">
 
-  <div class="day-title">
-   <h2>📖 9月13日（日）</h2>
-   <span class="badge">DAY 2</span>
-  </div>
+<div class="card">
+<h2>🗺️ 目的地</h2>
 
-  <div class="timeline">
+<h3>♨️ 湯田温泉</h3>
+<p>ホテル周辺を家族で散策しよう！</p>
 
-   <div class="event" id="event7">
-    <div class="event-content">
-     <div class="time">☀️ 朝</div>
-     <div class="event-name">朝食・出発準備</div>
-     <div class="event-detail">
-      忘れ物チェック！
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event7',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<button class="primary"
+onclick="window.open('https://www.google.com/maps/search/?api=1&query=湯田温泉','_blank')">
+📍 Googleマップ
+</button>
+</div>
 
-   <div class="event" id="event8">
-    <div class="event-content">
-     <div class="time">🚗</div>
-     <div class="event-name">観光スタート</div>
-     <div class="event-detail">
-      山口の思い出スポットへ。
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event8',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<div class="card">
+<h3>🦁 秋吉台サファリランド</h3>
+<p>動物たちを探してみよう！</p>
 
-   <div class="event" id="event9">
-    <div class="event-content">
-     <div class="time">📸</div>
-     <div class="event-name">家族写真</div>
-     <div class="event-detail">
-      5人そろって写真を撮ろう！
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event9',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
+<button class="primary"
+onclick="window.open('https://www.google.com/maps/search/?api=1&query=秋吉台サファリランド','_blank')">
+📍 Googleマップ
+</button>
+</div>
 
-   <div class="event" id="event10">
-    <div class="event-content">
-     <div class="time">🏠</div>
-     <div class="event-name">帰宅</div>
-     <div class="event-detail">
-      楽しかった旅を振り返ろう。
-     </div>
-     <div class="check">
-      <button onclick="completeEvent('event10',this)">☑ 完了</button>
-     </div>
-    </div>
-   </div>
-
-  </div>
-
- </div>
-
-</section>
-
-
-<!-- MAP -->
-
-<section id="map" class="page">
-
- <div class="card">
-  <h2>🗺️ 目的地</h2>
-  <p>目的地をタップしてGoogleマップを開こう。</p>
- </div>
-
- <div class="card">
-  <h2>♨️ 湯田温泉</h2>
-  <p>山口旅行の宿泊・夜散歩の目的地。</p>
-
-  <button class="menu-btn" style="width:100%"
-   onclick="window.open('https://www.google.com/maps/search/?api=1&query=湯田温泉ユウベルホテル松政','_blank')">
-   📍 Googleマップを開く
-  </button>
- </div>
-
- <div class="card">
-  <h2>🦁 サファリ</h2>
-  <p>動物たちとの出会いを楽しもう！</p>
-
-  <button class="menu-btn" style="width:100%"
-   onclick="window.open('https://www.google.com/maps/search/?api=1&query=秋吉台サファリランド','_blank')">
-   📍 Googleマップを開く
-  </button>
- </div>
-
-</section>
+</div>
 
 
 <!-- MISSION -->
+<div id="mission" class="page">
 
-<section id="mission" class="page">
+<div class="card">
+<h2>🎯 ミッション</h2>
 
- <div class="card">
-  <h2>🎯 子どもミッション</h2>
-  <p>旅行中にクリアしてポイントを集めよう！</p>
+<p>達成したらチェック！</p>
 
-  <div style="text-align:center;font-size:30px">
-   ⭐ <span id="points">0</span> pt
-  </div>
- </div>
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+🔎 おもしろいものを3つ見つける
+</label>
+</div>
 
- <div class="card">
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+📸 家族5人の写真を撮る
+</label>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    👀 おもしろいものを3つ見つける
-   </label>
-  </div>
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+🦁 動物を3種類見つける
+</label>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    📸 家族5人の写真を撮る
-   </label>
-  </div>
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+🍴 山口のおいしいものを食べる
+</label>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    🐾 動物を3種類見つける
-   </label>
-  </div>
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+♨️ 温泉に入る
+</label>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    🍴 山口のおいしいものを食べる
-   </label>
-  </div>
+<div class="mission">
+<label>
+<input type="checkbox" onchange="missionCheck(this,10)">
+😂 家族を1回笑わせる
+</label>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    ♨️ 温泉を楽しむ
-   </label>
-  </div>
+</div>
+</div>
 
-  <div class="mission">
-   <label>
-    <input type="checkbox" onchange="mission(this,10)">
-    😆 家族を笑わせる
-   </label>
-  </div>
 
- </div>
+<!-- QUIZ -->
+<div id="quiz" class="page">
 
-</section>
+<div class="card">
+
+<h2>🧠 山口クイズ</h2>
+
+<div id="quizArea"></div>
+
+</div>
+</div>
+
+
+<!-- RANK -->
+<div id="rank" class="page">
+
+<div class="card">
+
+<h2>🏆 しょうみおめい道中記</h2>
+
+<div class="points">
+⭐ <span id="rankPoints">0</span> pt
+</div>
+
+<div class="rank" id="rankBig">
+山口たんけん見習い
+</div>
+
+<hr>
+
+<h3>称号一覧</h3>
+
+<p>🥉 100pt　山口たんけん隊</p>
+<p>🥈 200pt　山口たんけん名人</p>
+<p>🥇 300pt　山口たんけん達人</p>
+<p>👑 500pt　山口たんけん王</p>
+
+</div>
+</div>
 
 
 <!-- ALBUM -->
+<div id="memory" class="page">
 
-<section id="album" class="page">
+<div class="card">
 
- <div class="card">
-  <h2>📸 思い出アルバム</h2>
-  <p>今日の思い出を残そう。</p>
- </div>
+<h2>📸 思い出アルバム</h2>
 
- <div class="card">
+<p>旅行中の写真を選んでみよう！</p>
 
-  <h2>📷 ベスト写真</h2>
+<input type="file"
+accept="image/*"
+multiple
+onchange="loadPhotos(event)">
 
-  <div style="text-align:center">
-   <input type="file" accept="image/*" onchange="photo(this)">
-   <img id="preview"
-    style="display:none;width:100%;margin-top:12px;border-radius:15px">
-  </div>
+<div id="photos"></div>
 
- </div>
+</div>
 
- <div class="card">
+<div class="card">
 
-  <h2>💬 今日の思い出</h2>
+<h3>📝 今日の思い出</h3>
 
-  <textarea id="memory"
-   style="width:100%;height:120px;border:1px solid #ddd;border-radius:12px;padding:12px"
-   placeholder="今日一番楽しかったことを書こう！"></textarea>
+<textarea id="memoryText"
+placeholder="いちばん楽しかったことを書こう！"
+oninput="saveMemory()"></textarea>
 
-  <button class="menu-btn"
-   style="width:100%;margin-top:10px"
-   onclick="saveMemory()">
-   💾 保存する
-  </button>
+</div>
 
-  <p id="saved" style="font-size:12px;color:#718b43"></p>
+</div>
 
- </div>
-
-</section>
-
-</main>
+</div>
 
 
-<nav>
+<!-- NAV -->
+<div class="bottom-nav">
 
- <button class="active" onclick="showPage('home',this)">
-  <span>🏠</span>ホーム
- </button>
+<button onclick="showPage('home')">
+🏠<br>ホーム
+</button>
 
- <button onclick="showPage('schedule',this)">
-  <span>📖</span>しおり
- </button>
+<button onclick="showPage('schedule')">
+📖<br>しおり
+</button>
 
- <button onclick="showPage('map',this)">
-  <span>🗺️</span>目的地
- </button>
+<button onclick="showPage('destination')">
+🗺️<br>目的地
+</button>
 
- <button onclick="showPage('mission',this)">
-  <span>🎯</span>ミッション
- </button>
+<button onclick="showPage('mission')">
+🎯<br>ミッション
+</button>
 
- <button onclick="showPage('album',this)">
-  <span>📸</span>思い出
- </button>
+<button onclick="showPage('memory')">
+📸<br>思い出
+</button>
 
-</nav>
+</div>
 
 
 <script>
 
-let points=Number(localStorage.getItem("points")||0);
-let completed=JSON.parse(localStorage.getItem("events")||"[]");
+let points = Number(localStorage.getItem("points") || 0);
 
-function showPage(id,button){
+function updatePoints() {
 
- document.querySelectorAll(".page").forEach(p=>{
-  p.classList.remove("active");
- });
+document.getElementById("totalPoints").textContent = points;
+document.getElementById("rankPoints").textContent = points;
 
- document.getElementById(id).classList.add("active");
+let rank = "山口たんけん見習い";
+let next = 100;
+let progress = points;
 
- document.querySelectorAll("nav button").forEach(b=>{
-  b.classList.remove("active");
- });
-
- if(button)button.classList.add("active");
-
- window.scrollTo(0,0);
+if(points >= 500){
+rank = "👑 山口たんけん王";
+next = 0;
+progress = 100;
+}
+else if(points >= 300){
+rank = "🥇 山口たんけん達人";
+next = 500;
+progress = points - 300;
+}
+else if(points >= 200){
+rank = "🥈 山口たんけん名人";
+next = 300;
+progress = points - 200;
+}
+else if(points >= 100){
+rank = "🥉 山口たんけん隊";
+next = 200;
+progress = points - 100;
 }
 
-function mission(box,value){
+document.getElementById("rank").textContent = rank;
+document.getElementById("rankBig").textContent = rank;
 
- if(box.checked){
-  points+=value;
- }else{
-  points-=value;
- }
-
- localStorage.setItem("points",points);
- document.getElementById("points").textContent=points;
+if(next === 0){
+document.getElementById("nextPoints").textContent = "MAX!";
+document.getElementById("rankProgress").style.width = "100%";
+}
+else{
+document.getElementById("nextPoints").textContent = next - points;
+document.getElementById("rankProgress").style.width =
+Math.min((progress / 100) * 100,100) + "%";
 }
 
-function completeEvent(id,button){
-
- const event=document.getElementById(id);
-
- if(completed.includes(id)){
-
-  completed=completed.filter(x=>x!==id);
-
-  event.classList.remove("done");
-  button.classList.remove("checked");
-
- }else{
-
-  completed.push(id);
-
-  event.classList.add("done");
-  button.classList.add("checked");
-
- }
-
- localStorage.setItem("events",JSON.stringify(completed));
-
- updateProgress();
+localStorage.setItem("points",points);
 }
 
-function updateProgress(){
+function addPoints(value){
 
- const total=10;
- const percent=Math.round(completed.length/total*100);
+points += value;
 
- document.getElementById("homeProgress").style.width=percent+"%";
- document.getElementById("progressText").textContent=
-  percent+"% 完了";
+updatePoints();
 
- if(completed.length===0){
+alert("🎉 +" + value + "ポイント！");
 
-  document.getElementById("nextPlace").textContent=
-   "山口旅行スタート！";
-
-  document.getElementById("nextDetail").textContent=
-   "家族5人で楽しい旅へ！";
-
- }else if(completed.length<6){
-
-  document.getElementById("nextPlace").textContent=
-   "DAY 1を楽しもう！";
-
-  document.getElementById("nextDetail").textContent=
-   "次の予定を確認して進もう。";
-
- }else{
-
-  document.getElementById("nextPlace").textContent=
-   "DAY 2へ！";
-
-  document.getElementById("nextDetail").textContent=
-   "旅の後半も楽しもう！";
-
- }
 }
 
-function photo(input){
+function missionCheck(box,value){
 
- if(input.files && input.files[0]){
+if(box.checked){
 
-  const reader=new FileReader();
+addPoints(value);
 
-  reader.onload=function(e){
+}
 
-   const img=document.getElementById("preview");
+}
 
-   img.src=e.target.result;
-   img.style.display="block";
+function showPage(page){
 
-   localStorage.setItem("photo",e.target.result);
-  };
+document.querySelectorAll(".page").forEach(
+p => p.classList.remove("active")
+);
 
-  reader.readAsDataURL(input.files[0]);
- }
+document.getElementById(page).classList.add("active");
+
+window.scrollTo(0,0);
+
+}
+
+const quizzes = [
+
+{
+q:"山口県の有名なカルスト台地は？",
+options:["秋吉台","阿蘇山","富士山"],
+answer:0
+},
+
+{
+q:"山口県の名物料理といえば？",
+options:["瓦そば","たこ焼き","きしめん"],
+answer:0
+},
+
+{
+q:"湯田温泉で有名な動物は？",
+options:["白狐","ペンギン","パンダ"],
+answer:0
+},
+
+{
+q:"秋吉台の地下に広がる有名な鍾乳洞は？",
+options:["秋芳洞","龍泉洞","鳴沢氷穴"],
+answer:0
+},
+
+{
+q:"今回の旅行は何人家族？",
+options:["3人","5人","8人"],
+answer:1
+}
+
+];
+
+let quizIndex =
+Number(localStorage.getItem("quizIndex") || 0);
+
+let quizAnswered =
+JSON.parse(localStorage.getItem("quizAnswered") || "[]");
+
+function showQuiz(){
+
+let area = document.getElementById("quizArea");
+
+if(quizIndex >= quizzes.length){
+
+area.innerHTML = `
+<h3>🎉 クイズ終了！</h3>
+<p>全問チャレンジしました！</p>
+<button class="primary big-button"
+onclick="resetQuiz()">
+もう一度挑戦
+</button>
+`;
+
+return;
+
+}
+
+let quiz = quizzes[quizIndex];
+
+area.innerHTML = `
+<div class="quiz">
+
+<h3>第${quizIndex+1}問</h3>
+
+<p>${quiz.q}</p>
+
+${quiz.options.map((option,i)=>`
+<button class="quiz-option"
+onclick="answerQuiz(${i})">
+${i+1}️⃣ ${option}
+</button>
+`).join("")}
+
+</div>
+`;
+
+}
+
+function answerQuiz(answer){
+
+let quiz = quizzes[quizIndex];
+
+if(answer === quiz.answer){
+
+alert("🎉 正解！ +10ポイント！");
+
+addPoints(10);
+
+}
+else{
+
+alert("😢 ざんねん！");
+
+}
+
+quizIndex++;
+
+localStorage.setItem("quizIndex",quizIndex);
+
+showQuiz();
+
+}
+
+function resetQuiz(){
+
+quizIndex = 0;
+
+localStorage.setItem("quizIndex",0);
+
+showQuiz();
+
+}
+
+function loadPhotos(event){
+
+let files = event.target.files;
+
+let area = document.getElementById("photos");
+
+area.innerHTML = "";
+
+for(let file of files){
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+let img = document.createElement("img");
+
+img.src = e.target.result;
+
+img.className = "photo-preview";
+
+area.appendChild(img);
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
 }
 
 function saveMemory(){
 
- const text=document.getElementById("memory").value;
+localStorage.setItem(
+"memoryText",
+document.getElementById("memoryText").value
+);
 
- localStorage.setItem("memory",text);
-
- document.getElementById("saved").textContent=
-  "✅ この端末に保存しました！";
 }
 
-window.onload=function(){
+function loadMemory(){
 
- document.getElementById("points").textContent=points;
+let text =
+localStorage.getItem("memoryText") || "";
 
- completed.forEach(id=>{
+document.getElementById("memoryText").value = text;
 
-  const event=document.getElementById(id);
+}
 
-  if(event){
-
-   event.classList.add("done");
-
-   const button=event.querySelector("button");
-
-   if(button)button.classList.add("checked");
-  }
-
- });
-
- const memory=localStorage.getItem("memory");
-
- if(memory){
-  document.getElementById("memory").value=memory;
- }
-
- const savedPhoto=localStorage.getItem("photo");
-
- if(savedPhoto){
-
-  const img=document.getElementById("preview");
-
-  img.src=savedPhoto;
-  img.style.display="block";
- }
-
- updateProgress();
-};
+updatePoints();
+showQuiz();
+loadMemory();
 
 </script>
 
