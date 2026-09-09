@@ -1202,11 +1202,15 @@ reader.readAsDataURL(file);
 
 function saveMemory(){
 
+const text =
+document.getElementById("memoryText").value;
+
 localStorage.setItem(
 "memoryText",
-document.getElementById("memoryText").value
+text
 );
 
+alert("💾 思い出を保存しました！");
 }
 
 
