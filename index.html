@@ -1069,11 +1069,57 @@ quizzes[quizIndex];
 
 if(answer === quiz.answer){
 
-points += 10;
+const members = [
+"お父さん",
+"お母さん",
+"子ども①",
+"子ども②",
+"子ども③"
+];
 
-updatePoints();
+let message =
+"🎉 正解！ +10ポイント！\n\n" +
+"誰が答えた？\n\n";
 
-alert("🎉 正解！ +10ポイント！");
+members.forEach((member,index)=>{
+message +=
+(index + 1) +
+"️⃣ " +
+member +
+"\n";
+});
+
+const selected =
+prompt(message + "\n番号を入力してください");
+
+const index =
+Number(selected) - 1;
+
+if(index >= 0 && index < members.length){
+
+const member =
+members[index];
+
+family[member] += 10;
+
+saveFamily();
+
+updateFamilyRanking();
+
+alert(
+"⭐ " +
+member +
+" に +10ポイント！"
+);
+
+}
+else{
+
+alert("⚠️ 1〜5の番号を入力してください");
+
+return;
+
+}
 
 }
 else{
