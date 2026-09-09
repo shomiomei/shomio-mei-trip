@@ -517,7 +517,23 @@ onchange="loadPhotos(event)">
 <textarea id="memoryText"
 placeholder="いちばん楽しかったことを書こう！"
 oninput="saveMemory()"></textarea>
+<div class="card">
 
+<h3>⭐ 一番楽しかった場所</h3>
+
+<select id="favoritePlace" onchange="saveFavoritePlace()">
+
+<option value="">選んでね</option>
+
+<option value="湯田温泉">♨️ 湯田温泉</option>
+
+<option value="秋吉台サファリランド">🦁 秋吉台サファリランド</option>
+
+<option value="その他">📍 その他</option>
+
+</select>
+
+</div>
 </div>
 
 </div>
@@ -1201,7 +1217,32 @@ reader.readAsDataURL(file);
 ========================= */
 
 function saveMemory(){
+function saveFavoritePlace(){
 
+const place =
+document.getElementById("favoritePlace").value;
+
+localStorage.setItem(
+"favoritePlace",
+place
+);
+
+}
+ function loadFavoritePlace(){
+
+const place =
+localStorage.getItem("favoritePlace") || "";
+
+const select =
+document.getElementById("favoritePlace");
+
+if(select){
+
+select.value = place;
+
+}
+
+} 
 const text =
 document.getElementById("memoryText").value;
 
@@ -1235,7 +1276,7 @@ showQuiz();
 loadMemory();
 
 loadMissions();
-  
+loadFavoritePlace();  
 </script>
 
 </body>
