@@ -609,23 +609,52 @@ return "山口たんけん見習い";
 
 function updatePoints(){
 
-document.getElementById("totalPoints").textContent =
-points;
+const totalPoints =
+document.getElementById("totalPoints");
 
-document.getElementById("familyTotal").textContent =
+const familyTotal =
+document.getElementById("familyTotal");
+
+const homeRank =
+document.getElementById("homeRank");
+
+const familyRank =
+document.getElementById("familyRank");
+
+const nextPoints =
+document.getElementById("nextPoints");
+
+const rankProgress =
+document.getElementById("rankProgress");
+
+
+const familySum =
 Object.values(family).reduce((a,b)=>a+b,0);
 
-document.getElementById("homeRank").textContent =
-getRank(points);
 
-document.getElementById("familyRank").textContent =
-getRank(Object.values(family).reduce((a,b)=>a+b,0));
+if(totalPoints){
+totalPoints.textContent = points;
+}
+
+if(familyTotal){
+familyTotal.textContent = familySum;
+}
+
+if(homeRank){
+homeRank.textContent = getRank(points);
+}
+
+if(familyRank){
+familyRank.textContent = getRank(familySum);
+}
+
 
 let total = points;
 
 let progress = 0;
 
 let next = 100;
+
 
 if(total >= 500){
 
@@ -658,16 +687,20 @@ next = 100 - total;
 
 }
 
-document.getElementById("nextPoints").textContent =
-next;
 
-document.getElementById("rankProgress").style.width =
+if(nextPoints){
+nextPoints.textContent = next;
+}
+
+if(rankProgress){
+rankProgress.style.width =
 Math.min(progress,100) + "%";
+}
+
 
 localStorage.setItem("points",points);
 
 }
-
 
 /* =========================
    ポイント追加
