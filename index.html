@@ -632,6 +632,10 @@ p => p.classList.remove("active")
 
 document.getElementById(page).classList.add("active");
 
+if(page === "rank"){
+  showFamilyRanking();
+}
+
 window.scrollTo(0,0);
 
 }
@@ -857,7 +861,6 @@ function showFamilyRanking() {
     `).join("");
 }
 
-showFamilyRanking();
 console.log("家族ランキング読み込み完了");  
 </script>
 
