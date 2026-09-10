@@ -2897,54 +2897,24 @@ if(
 answer === quiz.answer
 ){
 
-const members = Object.keys(family);
+const selectedMember =
+localStorage.getItem("quizMember");
 
 
-let message =
+if(!selectedMember){
 
-"🎉 正解！ +10ポイント！\n\n" +
+alert(
+"👨‍👩‍👧‍👦 まず答える人を選んでね！"
+);
 
-"誰が答えた？\n\n";
-
-
-members.forEach(
-(member,index)=>{
-
-message +=
-
-(index+1) +
-
-"️⃣ " +
-
-member +
-
-"\n";
+return;
 
 }
-);
 
 
-const selected =
-prompt(
-message +
-"\n番号を入力してください"
-);
+/* 正解ポイント */
 
-
-const index =
-Number(selected)-1;
-
-
-if(
-index >= 0 &&
-index < members.length
-){
-
-const member =
-members[index];
-
-
-family[member] +=
+family[selectedMember] +=
 10;
 
 
@@ -2959,25 +2929,15 @@ updatePoints();
 
 alert(
 
+"🎉 正解！\n\n" +
+
 "⭐ " +
 
-member +
+selectedMember +
 
 " に +10ポイント！"
 
 );
-
-}
-
-else{
-
-alert(
-"⚠️ 1〜5の番号を入力してください"
-);
-
-return;
-
-}
 
 }
 
@@ -2989,6 +2949,8 @@ alert(
 
 }
 
+
+/* 次のクイズ */
 
 quizIndex++;
 
@@ -3002,6 +2964,7 @@ quizIndex
 showQuiz();
 
 }
+   
 
 
 /* =========================
