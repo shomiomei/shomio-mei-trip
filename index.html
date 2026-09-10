@@ -1205,6 +1205,21 @@ QUIZ
 
 <h2>🧠 山口クイズ</h2>
 
+<div class="card">
+
+<h3>👨‍👩‍👧‍👦 だれが答える？</h3>
+
+<div id="quizMemberSelect"
+style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+">
+
+</div>
+
+</div>
+   
 <div id="quizArea"></div>
 
 </div>
@@ -2666,6 +2681,12 @@ if(page === "mission"){
 updateMissionMemberSelect();
 
 }
+
+if(page === "quiz"){
+
+updateQuizMemberSelect();
+
+}
    
 window.scrollTo(
 0,
@@ -2887,6 +2908,66 @@ option +
 クイズ回答
 ========================= */
 
+function updateQuizMemberSelect(){
+
+const area =
+document.getElementById(
+"quizMemberSelect"
+);
+
+if(!area){
+return;
+}
+
+area.innerHTML = "";
+
+Object.keys(family).forEach(
+name=>{
+
+const button =
+document.createElement("button");
+
+button.textContent =
+name;
+
+button.className =
+"blue big-button";
+
+button.onclick =
+function(){
+
+localStorage.setItem(
+"quizMember",
+name
+);
+
+document
+.querySelectorAll(
+"#quizMemberSelect button"
+)
+.forEach(
+b=>{
+b.classList.remove("selected");
+}
+);
+
+button.classList.add("selected");
+
+alert(
+"🎮 " +
+name +
+" が答えます！"
+);
+
+};
+
+area.appendChild(button);
+
+}
+);
+
+}
+   
 function answerQuiz(answer){
 
 const quiz =
