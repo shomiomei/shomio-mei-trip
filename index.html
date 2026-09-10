@@ -1586,6 +1586,34 @@ localStorage.getItem("points") || 0
 
 
 /* =========================
+家族の名前
+========================= */
+
+function getFamilyNames(){
+
+return {
+
+dad:
+localStorage.getItem("dadName") || "お父さん",
+
+mom:
+localStorage.getItem("momName") || "お母さん",
+
+child1:
+localStorage.getItem("child1Name") || "子ども①",
+
+child2:
+localStorage.getItem("child2Name") || "子ども②",
+
+child3:
+localStorage.getItem("child3Name") || "子ども③"
+
+};
+
+}
+
+
+/* =========================
 家族ポイント
 ========================= */
 
@@ -1619,8 +1647,6 @@ localStorage.getItem("child3Points") || 0
 )
 
 };
-}
-
 
 /* =========================
 家族の名前を保存
