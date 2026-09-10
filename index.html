@@ -596,6 +596,14 @@ onclick="resetFamilyPoints()">
 🔄 ポイントをリセット
 
 </button>
+
+<button
+class="blue big-button"
+onclick="resetTravelPhotos()">
+
+🗑️ 写真だけ削除
+
+</button>
    
 </div>
    
@@ -2495,6 +2503,58 @@ alert(
 
 }
 
+function resetTravelPhotos(){
+
+const result =
+confirm(
+"⚠️ 保存されている旅行写真をすべて削除します。\n\nポイント・名前・思い出は残ります。\n\n本当に削除しますか？"
+);
+
+if(!result){
+
+return;
+
+}
+
+
+localStorage.removeItem(
+"travelPhotos"
+);
+
+
+const recordPhotos =
+document.getElementById(
+"recordPhotos"
+);
+
+if(recordPhotos){
+
+recordPhotos.innerHTML = "";
+
+}
+
+
+const photoArea =
+document.getElementById(
+"photoPreview"
+);
+
+if(photoArea){
+
+photoArea.innerHTML = "";
+
+}
+
+
+loadPhotosFromStorage();
+
+
+alert(
+"🗑️ 写真をすべて削除しました！"
+);
+
+}
+   
 /* =========================
 ミッション
 ========================= */
