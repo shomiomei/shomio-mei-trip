@@ -1075,6 +1075,21 @@ MISSION
 
 <h2>🎯 ミッション</h2>
 
+<div class="card">
+
+<h3>👨‍👩‍👧‍👦 だれが挑戦する？</h3>
+
+<div id="missionMemberSelect"
+style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+">
+
+</div>
+
+</div>
+   
 <p>
 達成したらチェック！
 </p>
@@ -2411,6 +2426,66 @@ family[names.child3] || 0
 ミッション
 ========================= */
 
+function updateMissionMemberSelect(){
+
+const area =
+document.getElementById(
+"missionMemberSelect"
+);
+
+if(!area){
+return;
+}
+
+area.innerHTML = "";
+
+Object.keys(family).forEach(
+name=>{
+
+const button =
+document.createElement("button");
+
+button.textContent =
+name;
+
+button.className =
+"blue big-button";
+
+button.onclick =
+function(){
+
+localStorage.setItem(
+"missionMember",
+name
+);
+
+document
+.querySelectorAll(
+"#missionMemberSelect button"
+)
+.forEach(
+b=>{
+b.classList.remove("selected");
+}
+);
+
+button.classList.add("selected");
+
+alert(
+"🎉 " +
+name +
+" が挑戦します！"
+);
+
+};
+
+area.appendChild(button);
+
+}
+);
+
+}
+   
 function missionCheck(
 box,
 value
@@ -2620,6 +2695,12 @@ showQuiz();
 
 }
 
+if(page === "mission"){
+
+updateMissionMemberSelect();
+
+}
+   
 window.scrollTo(
 0,
 0
