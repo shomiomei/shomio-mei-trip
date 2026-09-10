@@ -539,7 +539,40 @@ oninput="saveMemory()"></textarea>
 </div>
 
 </div>
+<!-- 旅のアルバム -->
 
+<div class="card">
+
+<h2>📖 旅のアルバム</h2>
+
+<p>
+🚗 山口家族旅行<br>
+2026年9月12日〜9月13日
+</p>
+
+<hr>
+
+<h3>🏆 家族ランキング</h3>
+
+<div id="albumRanking"></div>
+
+<hr>
+
+<h3>⭐ 一番楽しかった場所</h3>
+
+<p id="albumFavoritePlace">
+まだ選んでいません
+</p>
+
+<hr>
+
+<h3>📝 家族の思い出</h3>
+
+<p id="albumMemory">
+まだ思い出が書かれていません
+</p>
+
+</div>
 
 <!-- NAV -->
 <div class="bottom-nav">
@@ -937,7 +970,9 @@ area.appendChild(div);
 ========================= */
 
 function showPage(page){
-
+if(page === "memory"){
+  updateAlbum();
+}
 document.querySelectorAll(".page")
 .forEach(p=>{
 p.classList.remove("active");
@@ -1218,7 +1253,60 @@ reader.readAsDataURL(file);
 
 function saveMemory(){
 function saveFavoritePlace(){
+function updateAlbum(){
 
+const rankingArea =
+document.getElementById("albumRanking");
+
+if(rankingArea){
+
+const ranking =
+Object.entries(family)
+.sort((a,b)=>b[1]-a[1]);
+
+const medals =
+["🥇","🥈","🥉","4️⃣","5️⃣"];
+
+rankingArea.innerHTML =
+ranking.map((item,index)=>
+"<p>" +
+medals[index] +
+" " +
+item[0] +
+"　⭐ " +
+item[1] +
+" pt</p>"
+).join("");
+
+}
+
+const favorite =
+localStorage.getItem("favoritePlace") || "";
+
+const favoriteArea =
+document.getElementById("albumFavoritePlace");
+
+if(favoriteArea){
+
+favoriteArea.textContent =
+favorite || "まだ選んでいません";
+
+}
+
+const memory =
+localStorage.getItem("memoryText") || "";
+
+const memoryArea =
+document.getElementById("albumMemory");
+
+if(memoryArea){
+
+memoryArea.textContent =
+memory || "まだ思い出が書かれていません";
+
+}
+
+}
 const place =
 document.getElementById("favoritePlace").value;
 
@@ -1277,6 +1365,8 @@ loadMemory();
 
 loadMissions();
 loadFavoritePlace();  
+
+  updateAlbum();
 </script>
 
 </body>
