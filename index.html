@@ -589,6 +589,14 @@ onclick="showPage('setup')">
 
 </button>
 
+<button
+class="blue big-button"
+onclick="resetFamilyPoints()">
+
+🔄 ポイントをリセット
+
+</button>
+   
 </div>
    
 <div class="card">
@@ -2436,6 +2444,56 @@ family[names.child3] || 0
    
 }
 
+   function resetFamilyPoints(){
+
+const result =
+confirm(
+"⚠️ 家族5人のポイントをすべて0にします。\n\n名前・写真・思い出は残ります。\n\n本当にリセットしますか？"
+);
+
+if(!result){
+
+return;
+
+}
+
+
+family = {
+
+[getFamilyNames().dad]: 0,
+
+[getFamilyNames().mom]: 0,
+
+[getFamilyNames().child1]: 0,
+
+[getFamilyNames().child2]: 0,
+
+[getFamilyNames().child3]: 0
+
+};
+
+
+saveFamily();
+
+localStorage.setItem(
+"points",
+0
+);
+
+updateFamilyRanking();
+
+updateAlbum();
+
+updatePoints();
+
+updateRecord();
+
+
+alert(
+"🔄 ポイントをリセットしました！"
+);
+
+}
 
 /* =========================
 ミッション
