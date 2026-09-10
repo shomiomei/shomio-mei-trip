@@ -430,7 +430,77 @@ margin:20px 0;
 
 <div class="container">
 
+<!-- =========================
+FAMILY SETUP
+========================= -->
 
+<div id="setup" class="page">
+
+<div class="card">
+
+<h2>👨‍👩‍👧‍👦 家族の名前を決めよう！</h2>
+
+<p>
+旅行で使う名前を入力してね。
+</p>
+
+<label>
+👨 お父さん
+</label>
+
+<input
+type="text"
+id="dadName"
+placeholder="お父さん">
+
+<label>
+👩 お母さん
+</label>
+
+<input
+type="text"
+id="momName"
+placeholder="お母さん">
+
+<label>
+👧 子ども①
+</label>
+
+<input
+type="text"
+id="child1Name"
+placeholder="名前を入力">
+
+<label>
+👦 子ども②
+</label>
+
+<input
+type="text"
+id="child2Name"
+placeholder="名前を入力">
+
+<label>
+👧 子ども③
+</label>
+
+<input
+type="text"
+id="child3Name"
+placeholder="名前を入力">
+
+<button
+class="primary big-button"
+onclick="saveFamilyNames()">
+
+🎉 この名前でスタート！
+
+</button>
+
+</div>
+
+</div>
+   
 <!-- =========================
 HOME
 ========================= -->
@@ -1151,26 +1221,6 @@ id="familyRank">
 
 <select id="familyMember">
 
-<option value="お父さん">
-お父さん
-</option>
-
-<option value="お母さん">
-お母さん
-</option>
-
-<option value="子ども①">
-子ども①
-</option>
-
-<option value="子ども②">
-子ども②
-</option>
-
-<option value="子ども③">
-子ども③
-</option>
-
 </select>
 
 
@@ -1539,40 +1589,147 @@ localStorage.getItem("points") || 0
 家族ポイント
 ========================= */
 
+const names = getFamilyNames();
+
 let family = {
 
-"お父さん":
+[names.dad]:
 Number(
 localStorage.getItem("dadPoints") || 0
 ),
 
-"お母さん":
+[names.mom]:
 Number(
 localStorage.getItem("momPoints") || 0
 ),
 
-"子ども①":
+[names.child1]:
 Number(
 localStorage.getItem("child1Points") || 0
 ),
 
-"子ども②":
+[names.child2]:
 Number(
 localStorage.getItem("child2Points") || 0
 ),
 
-"子ども③":
+[names.child3]:
 Number(
 localStorage.getItem("child3Points") || 0
 )
 
 };
+}
 
 
 /* =========================
-称号
+家族の名前を保存
 ========================= */
 
+function saveFamilyNames(){
+
+const dad =
+document.getElementById("dadName").value.trim();
+
+const mom =
+document.getElementById("momName").value.trim();
+
+const child1 =
+document.getElementById("child1Name").value.trim();
+
+const child2 =
+document.getElementById("child2Name").value.trim();
+
+const child3 =
+document.getElementById("child3Name").value.trim();
+
+
+if(
+!dad ||
+!mom ||
+!child1 ||
+!child2 ||
+!child3
+){
+
+alert(
+"⚠️ 5人全員の名前を入力してください"
+);
+
+return;
+
+}
+
+
+localStorage.setItem(
+"dadName",
+dad
+);
+
+localStorage.setItem(
+"momName",
+mom
+);
+
+localStorage.setItem(
+"child1Name",
+child1
+);
+
+localStorage.setItem(
+"child2Name",
+child2
+);
+
+localStorage.setItem(
+"child3Name",
+child3
+);
+
+
+alert(
+"🎉 家族の名前を登録しました！"
+);
+
+
+location.reload();
+
+}
+
+/* =========================
+家族選択欄を更新
+========================= */
+
+function updateFamilySelect(){
+
+const select =
+document.getElementById("familyMember");
+
+if(!select){
+return;
+}
+
+select.innerHTML = "";
+
+Object.keys(family).forEach(
+name=>{
+
+const option =
+document.createElement("option");
+
+option.value =
+name;
+
+option.textContent =
+name;
+
+select.appendChild(option);
+
+}
+);
+
+}
+   
 function getRank(value){
 
 if(value >= 500){
@@ -2170,31 +2327,34 @@ value +
 
 function saveFamily(){
 
+const names = getFamilyNames();
+
 localStorage.setItem(
 "dadPoints",
-family["お父さん"]
+family[names.dad] || 0
 );
 
 localStorage.setItem(
 "momPoints",
-family["お母さん"]
+family[names.mom] || 0
 );
 
 localStorage.setItem(
 "child1Points",
-family["子ども①"]
+family[names.child1] || 0
 );
 
 localStorage.setItem(
 "child2Points",
-family["子ども②"]
+family[names.child2] || 0
 );
 
 localStorage.setItem(
 "child3Points",
-family["子ども③"]
+family[names.child3] || 0
 );
 
+   
 }
 
 
@@ -2214,15 +2374,7 @@ return;
 }
 
 
-const members = [
-
-"お父さん",
-"お母さん",
-"子ども①",
-"子ども②",
-"子ども③"
-
-];
+const members = Object.keys(family);
 
 
 let message =
@@ -2404,7 +2556,11 @@ if(page === "record"){
 updateRecord();
 
 }
-   
+if(page === "rank"){
+
+updateFamilySelect();
+
+}   
 updatePoints();
 
 updateFamilyRanking();
@@ -2645,15 +2801,7 @@ if(
 answer === quiz.answer
 ){
 
-const members = [
-
-"お父さん",
-"お母さん",
-"子ども①",
-"子ども②",
-"子ども③"
-
-];
+const members = Object.keys(family);
 
 
 let message =
