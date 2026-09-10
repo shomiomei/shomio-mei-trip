@@ -2485,7 +2485,7 @@ area.appendChild(button);
 );
 
 }
-   
+
 function missionCheck(
 box,
 value
@@ -2498,51 +2498,13 @@ return;
 }
 
 
-const members = Object.keys(family);
+const selectedMember =
+localStorage.getItem("missionMember");
 
-
-let message =
-
-"🎯 ミッション達成！\n\n" +
-
-"誰が達成した？\n\n";
-
-
-members.forEach(
-(member,index)=>{
-
-message +=
-
-(index+1) +
-
-"️⃣ " +
-
-member +
-
-"\n";
-
-}
-);
-
-
-const answer =
-prompt(
-message +
-"\n番号を入力してください"
-);
-
-
-const index =
-Number(answer)-1;
-
-
-if(
-index < 0 ||
-index >= members.length
-){
+if(!selectedMember){
 
 alert(
-"⚠️ 1〜5の番号を入力してください"
+"👨‍👩‍👧‍👦 まず挑戦する人を選んでね！"
 );
 
 box.checked =
@@ -2553,11 +2515,9 @@ return;
 }
 
 
-const member =
-members[index];
+/* ポイント追加 */
 
-
-family[member] +=
+family[selectedMember] +=
 value;
 
 
@@ -2569,6 +2529,8 @@ updateAlbum();
 
 updatePoints();
 
+
+/* ミッション保存 */
 
 const missionId =
 box.dataset.mission;
@@ -2585,13 +2547,17 @@ missionId,
 }
 
 
+/* 完了メッセージ */
+
 alert(
 
 "🎉 " +
 
-member +
+selectedMember +
 
-" に +" +
+" がミッション達成！\n\n" +
+
+"+" +
 
 value +
 
@@ -2601,7 +2567,7 @@ value +
 
 }
 
-
+   
 /* =========================
 ミッション読み込み
 ========================= */
