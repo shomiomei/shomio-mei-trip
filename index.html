@@ -1353,13 +1353,13 @@ onchange="saveFavoritePlace()">
 
 <h3>📝 家族の思い出</h3>
 
-<p
+<div
 id="albumMemory"
 class="album-memory">
 
 まだ思い出が書かれていません
 
-</p>
+</div>
 
 
 <hr>
@@ -2143,45 +2143,23 @@ document
 .querySelectorAll(".page")
 .forEach(
 p=>{
-
-p.classList.remove(
-"active"
-);
-
+p.classList.remove("active");
 }
 );
-
 
 const target =
 document.getElementById(page);
 
-
 if(target){
-
-target.classList.add(
-"active"
-);
-
+target.classList.add("active");
 }
 
-
-/* ページ移動時に情報更新 */
-
-updatePoints();
-
-updateFamilyRanking();
-
-updateAlbum();
-
-
-if(page === "quiz"){
-
-showQuiz();
-
-}
-
+/* ホーム・しおり・目的地・ミッションでは
+   旅のアルバムを更新しない */
 
 if(page === "memory"){
+
+updateAlbum();
 
 loadMemory();
 
@@ -2191,6 +2169,15 @@ loadPhotosFromStorage();
 
 }
 
+updatePoints();
+
+updateFamilyRanking();
+
+if(page === "quiz"){
+
+showQuiz();
+
+}
 
 window.scrollTo(
 0,
@@ -2198,7 +2185,6 @@ window.scrollTo(
 );
 
 }
-
 
 /* =========================
 Googleマップ
