@@ -670,42 +670,7 @@ onclick="addFamilyPoint()">
 <p>旅行中の写真を選んでみよう！</p>
 <!-- 旅のアルバム -->
 
-<div class="card">
 
-<h2>📖 旅のアルバム</h2>
-
-<p>
-🚗 山口家族旅行<br>
-2026年9月12日〜9月13日
-</p>
-
-<hr>
-
-<h3>🏆 家族ランキング</h3>
-
-<div id="albumRanking"></div>
-
-<hr>
-
-<h3>⭐ 一番楽しかった場所</h3>
-
-<p id="albumFavoritePlace">
-まだ選んでいません
-</p>
-
-<hr>
-
-<h3>📝 家族の思い出</h3>
-
-
-<input type="file"
-accept="image/*"
-multiple
-onchange="loadPhotos(event)">
-
-<div id="photos"></div>
-
-</div>
 
 <div class="card">
 
@@ -743,7 +708,42 @@ placeholder="いちばん楽しかったことを書こう！"></textarea>
 <p id="albumMemory">
 まだ思い出が書かれていません
 </p>
+<div class="card">
 
+<h2>📖 旅のアルバム</h2>
+
+<p>
+🚗 山口家族旅行<br>
+2026年9月12日〜9月13日
+</p>
+
+<hr>
+
+<h3>🏆 家族ランキング</h3>
+
+<div id="albumRanking"></div>
+
+<hr>
+
+<h3>⭐ 一番楽しかった場所</h3>
+
+<p id="albumFavoritePlace">
+まだ選んでいません
+</p>
+
+<hr>
+
+<h3>📝 家族の思い出</h3>
+
+
+<input type="file"
+accept="image/*"
+multiple
+onchange="loadPhotos(event)">
+
+<div id="photos"></div>
+
+</div>
 </div>
 
 
@@ -1422,61 +1422,24 @@ reader.readAsDataURL(file);
 ========================= */
 
 function saveMemory(){
+
+const text =
+document.getElementById("memoryText").value;
+
+localStorage.setItem(
+"memoryText",
+text
+);
+
+alert("💾 思い出を保存しました！");
+
+updateAlbum();
+
+}
+
+
 function saveFavoritePlace(){
-function updateAlbum(){
 
-const rankingArea =
-document.getElementById("albumRanking");
-
-if(rankingArea){
-
-const ranking =
-Object.entries(family)
-.sort((a,b)=>b[1]-a[1]);
-
-const medals =
-["🥇","🥈","🥉","4️⃣","5️⃣"];
-
-rankingArea.innerHTML =
-ranking.map((item,index)=>
-"<p>" +
-medals[index] +
-" " +
-item[0] +
-"　⭐ " +
-item[1] +
-" pt</p>"
-).join("");
-
-}
-
-const favorite =
-localStorage.getItem("favoritePlace") || "";
-
-const favoriteArea =
-document.getElementById("albumFavoritePlace");
-
-if(favoriteArea){
-
-favoriteArea.textContent =
-favorite || "まだ選んでいません";
-
-}
-
-const memory =
-localStorage.getItem("memoryText") || "";
-
-const memoryArea =
-document.getElementById("albumMemory");
-
-if(memoryArea){
-
-memoryArea.textContent =
-memory || "まだ思い出が書かれていません";
-
-}
-
-}
 const place =
 document.getElementById("favoritePlace").value;
 
@@ -1485,8 +1448,12 @@ localStorage.setItem(
 place
 );
 
+updateAlbum();
+
 }
- function loadFavoritePlace(){
+
+
+function loadFavoritePlace(){
 
 const place =
 localStorage.getItem("favoritePlace") || "";
@@ -1500,27 +1467,24 @@ select.value = place;
 
 }
 
-} 
-const text =
-document.getElementById("memoryText").value;
-
-localStorage.setItem(
-"memoryText",
-text
-);
-
-alert("💾 思い出を保存しました！");
- updateAlbum(); 
 }
 
 
 function loadMemory(){
 
-document.getElementById("memoryText").value =
+const memory =
 localStorage.getItem("memoryText") || "";
+
+const memoryArea =
+document.getElementById("memoryText");
+
+if(memoryArea){
+
+memoryArea.value = memory;
 
 }
 
+}
 
 /* =========================
    起動
