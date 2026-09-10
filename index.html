@@ -2041,177 +2041,12 @@ localStorage.getItem(
 
 if(albumMemory){
 
-if(memory){
-
 albumMemory.textContent =
-memory;
-
-}
-
-else{
-
-albumMemory.textContent =
+memory ||
 "まだ思い出が書かれていません";
 
 }
 
-}
-
-function updateRecord(){
-
-const recordPoints =
-document.getElementById("recordPoints");
-
-const recordRank =
-document.getElementById("recordRank");
-
-const recordRanking =
-document.getElementById("recordRanking");
-
-const recordFavoritePlace =
-document.getElementById("recordFavoritePlace");
-
-const recordMemory =
-document.getElementById("recordMemory");
-
-const recordPhotos =
-document.getElementById("recordPhotos");
-
-
-/* ポイント */
-
-const total =
-Object.values(family)
-.reduce((a,b)=>a+b,0);
-
-if(recordPoints){
-
-recordPoints.textContent =
-total;
-
-}
-
-
-/* 称号 */
-
-if(recordRank){
-
-recordRank.textContent =
-getRank(total);
-
-}
-
-
-/* ランキング */
-
-if(recordRanking){
-
-const ranking =
-Object.entries(family)
-.sort((a,b)=>b[1]-a[1]);
-
-const medals =
-[
-"🥇",
-"🥈",
-"🥉",
-"4️⃣",
-"5️⃣"
-];
-
-recordRanking.innerHTML =
-ranking
-.map(
-(item,index)=>{
-
-return (
-
-"<div class='ranking-item'>" +
-
-"<span>" +
-medals[index] +
-" " +
-item[0] +
-"</span>" +
-
-"<strong>⭐ " +
-item[1] +
-" pt</strong>" +
-
-"</div>"
-
-);
-
-}
-)
-.join("");
-
-}
-
-
-/* 一番楽しかった場所 */
-
-const place =
-localStorage.getItem(
-"favoritePlace"
-) || "";
-
-if(recordFavoritePlace){
-
-recordFavoritePlace.textContent =
-place || "まだ選んでいません";
-
-}
-
-
-/* 思い出 */
-
-const memory =
-localStorage.getItem(
-"memoryText"
-) || "";
-
-if(recordMemory){
-
-recordMemory.textContent =
-memory || "まだ思い出が書かれていません";
-
-}
-
-
-/* 写真 */
-
-if(recordPhotos){
-
-const saved =
-JSON.parse(
-localStorage.getItem(
-"travelPhotos"
-) || "[]"
-);
-
-recordPhotos.innerHTML = "";
-
-saved.forEach(
-src=>{
-
-const img =
-document.createElement("img");
-
-img.src =
-src;
-
-img.className =
-"photo-preview";
-
-recordPhotos.appendChild(img);
-
-}
-);
-
-}
-
-}  
 
 /* 好きな場所 */
 
@@ -2223,19 +2058,9 @@ localStorage.getItem(
 
 if(albumFavoritePlace){
 
-if(place){
-
 albumFavoritePlace.textContent =
-place;
-
-}
-
-else{
-
-albumFavoritePlace.textContent =
+place ||
 "まだ選んでいません";
-
-}
 
 }
 
@@ -2270,19 +2095,13 @@ return (
 "<div class='ranking-item'>" +
 
 "<span>" +
-
 medals[index] +
-
 " " +
-
 item[0] +
-
 "</span>" +
 
 "<strong>⭐ " +
-
 item[1] +
-
 " pt</strong>" +
 
 "</div>"
@@ -2298,6 +2117,193 @@ item[1] +
 }
 
 
+/* =========================
+旅の記録
+========================= */
+
+function updateRecord(){
+
+const recordPoints =
+document.getElementById(
+"recordPoints"
+);
+
+const recordRank =
+document.getElementById(
+"recordRank"
+);
+
+const recordRanking =
+document.getElementById(
+"recordRanking"
+);
+
+const recordFavoritePlace =
+document.getElementById(
+"recordFavoritePlace"
+);
+
+const recordMemory =
+document.getElementById(
+"recordMemory"
+);
+
+const recordPhotos =
+document.getElementById(
+"recordPhotos"
+);
+
+
+/* ポイント */
+
+const total =
+Object.values(family)
+.reduce(
+(a,b)=>a+b,
+0
+);
+
+
+if(recordPoints){
+
+recordPoints.textContent =
+total;
+
+}
+
+
+/* 称号 */
+
+if(recordRank){
+
+recordRank.textContent =
+getRank(total);
+
+}
+
+
+/* ランキング */
+
+if(recordRanking){
+
+const ranking =
+Object.entries(family)
+.sort(
+(a,b)=>b[1]-a[1]
+);
+
+const medals =
+[
+"🥇",
+"🥈",
+"🥉",
+"4️⃣",
+"5️⃣"
+];
+
+
+recordRanking.innerHTML =
+ranking
+.map(
+(item,index)=>{
+
+return (
+
+"<div class='ranking-item'>" +
+
+"<span>" +
+medals[index] +
+" " +
+item[0] +
+"</span>" +
+
+"<strong>⭐ " +
+item[1] +
+" pt</strong>" +
+
+"</div>"
+
+);
+
+}
+)
+.join("");
+
+}
+
+
+/* 好きな場所 */
+
+const place =
+localStorage.getItem(
+"favoritePlace"
+) || "";
+
+
+if(recordFavoritePlace){
+
+recordFavoritePlace.textContent =
+place ||
+"まだ選んでいません";
+
+}
+
+
+/* 思い出 */
+
+const memory =
+localStorage.getItem(
+"memoryText"
+) || "";
+
+
+if(recordMemory){
+
+recordMemory.textContent =
+memory ||
+"まだ思い出が書かれていません";
+
+}
+
+
+/* 写真 */
+
+if(recordPhotos){
+
+const saved =
+JSON.parse(
+localStorage.getItem(
+"travelPhotos"
+) || "[]"
+);
+
+recordPhotos.innerHTML = "";
+
+saved.forEach(
+src=>{
+
+const img =
+document.createElement(
+"img"
+);
+
+img.src =
+src;
+
+img.className =
+"photo-preview";
+
+recordPhotos.appendChild(
+img
+);
+
+}
+);
+
+}
+
+}
+   
 /* =========================
 ポイント追加
 ========================= */
