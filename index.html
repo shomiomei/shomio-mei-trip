@@ -1391,7 +1391,75 @@ onchange="loadPhotos(event)">
 
 </div>
 
+<!-- =========================
+TRIP RECORD
+========================= -->
 
+<div id="record" class="page">
+
+<div class="card">
+
+<h2>🎊 山口旅行・旅の記録</h2>
+
+<p>
+🚗 しょうみおめい家族旅行
+<br>
+2026年9月12日（土）〜9月13日（日）
+</p>
+
+<hr>
+
+<h3>🏆 旅のポイント</h3>
+
+<div class="points">
+⭐ <span id="recordPoints">0</span> pt
+</div>
+
+<div class="rank" id="recordRank">
+山口たんけん見習い
+</div>
+
+<hr>
+
+<h3>🥇 家族ランキング</h3>
+
+<div id="recordRanking"></div>
+
+<hr>
+
+<h3>⭐ 一番楽しかった場所</h3>
+
+<p id="recordFavoritePlace">
+まだ選んでいません
+</p>
+
+<hr>
+
+<h3>📝 家族の思い出</h3>
+
+<div id="recordMemory" class="album-memory">
+まだ思い出が書かれていません
+</div>
+
+<hr>
+
+<h3>📸 旅行の写真</h3>
+
+<div id="recordPhotos"></div>
+
+<hr>
+
+<h2 style="text-align:center;">
+🎉 山口旅行コンプリート！
+</h2>
+
+<p style="text-align:center;">
+家族5人の大切な思い出ができました！
+</p>
+
+</div>
+
+</div>
 <!-- =========================
 BOTTOM NAV
 ========================= -->
@@ -1799,6 +1867,161 @@ albumMemory.textContent =
 
 }
 
+function updateRecord(){
+
+const recordPoints =
+document.getElementById("recordPoints");
+
+const recordRank =
+document.getElementById("recordRank");
+
+const recordRanking =
+document.getElementById("recordRanking");
+
+const recordFavoritePlace =
+document.getElementById("recordFavoritePlace");
+
+const recordMemory =
+document.getElementById("recordMemory");
+
+const recordPhotos =
+document.getElementById("recordPhotos");
+
+
+/* ポイント */
+
+const total =
+Object.values(family)
+.reduce((a,b)=>a+b,0);
+
+if(recordPoints){
+
+recordPoints.textContent =
+total;
+
+}
+
+
+/* 称号 */
+
+if(recordRank){
+
+recordRank.textContent =
+getRank(total);
+
+}
+
+
+/* ランキング */
+
+if(recordRanking){
+
+const ranking =
+Object.entries(family)
+.sort((a,b)=>b[1]-a[1]);
+
+const medals =
+[
+"🥇",
+"🥈",
+"🥉",
+"4️⃣",
+"5️⃣"
+];
+
+recordRanking.innerHTML =
+ranking
+.map(
+(item,index)=>{
+
+return (
+
+"<div class='ranking-item'>" +
+
+"<span>" +
+medals[index] +
+" " +
+item[0] +
+"</span>" +
+
+"<strong>⭐ " +
+item[1] +
+" pt</strong>" +
+
+"</div>"
+
+);
+
+}
+)
+.join("");
+
+}
+
+
+/* 一番楽しかった場所 */
+
+const place =
+localStorage.getItem(
+"favoritePlace"
+) || "";
+
+if(recordFavoritePlace){
+
+recordFavoritePlace.textContent =
+place || "まだ選んでいません";
+
+}
+
+
+/* 思い出 */
+
+const memory =
+localStorage.getItem(
+"memoryText"
+) || "";
+
+if(recordMemory){
+
+recordMemory.textContent =
+memory || "まだ思い出が書かれていません";
+
+}
+
+
+/* 写真 */
+
+if(recordPhotos){
+
+const saved =
+JSON.parse(
+localStorage.getItem(
+"travelPhotos"
+) || "[]"
+);
+
+recordPhotos.innerHTML = "";
+
+saved.forEach(
+src=>{
+
+const img =
+document.createElement("img");
+
+img.src =
+src;
+
+img.className =
+"photo-preview";
+
+recordPhotos.appendChild(img);
+
+}
+);
+
+}
+
+}  
 
 /* 好きな場所 */
 
@@ -2169,6 +2392,12 @@ loadPhotosFromStorage();
 
 }
 
+if(page === "record"){
+
+updateRecord();
+
+}
+   
 updatePoints();
 
 updateFamilyRanking();
